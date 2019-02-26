@@ -38,7 +38,7 @@ $('#button').click(function(){
         }
       }
     }
-    $('#process').append(myWord + ' : ' + eat + 'eat ' + bite + 'bite<br>');
+    $('#process').append('<tr><td>' + myWord + '</td><td>' + eat + 'eat ' + bite + 'bite</td></tr>');
     if(eat == 4){
       alert('正解です！\n' + $('#answer').text() + ' : ' + $('#description').text());
       location.reload();
