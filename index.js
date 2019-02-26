@@ -1,7 +1,3 @@
-//$('#process').load('https://www.dropbox.com/s/g56qxevr4an0o1t/dict-4letters.txt?dl=0');
-//$('#process').load('./dict-4letters.txt');
-
-//$.get('./dict-4letters.txt',callback(data));
 $.ajax({
   url: './dict-4letters.txt',
   success: main
@@ -38,7 +34,7 @@ $('#button').click(function(){
         }
       }
     }
-    $('#process').append('<tr><td>' + myWord + '</td><td>' + eat + 'eat ' + bite + 'bite</td></tr>');
+    $('#process').prepend('<tr><td>' + myWord + '</td><td>' + eat + 'eat ' + bite + 'bite</td></tr>');
     if(eat == 4){
       alert('正解です！\n' + $('#answer').text() + ' : ' + $('#description').text());
       location.reload();
@@ -46,9 +42,19 @@ $('#button').click(function(){
   }else{
     alert('4文字のアルファベットを入力してください');
   }
-//  alert($('#answer').text());
 });
 
-/*for(var i=0;i<10;i++){
-  console.log(list[i]);
-}*/
+document.addEventListener('touchstart', event => {
+  if (event.touches.length > 1) {
+    event.preventDefault();
+  }
+}, true);
+
+let lastTouch = 0;
+document.addEventListener('touchend', event => {
+  const now = window.performance.now();
+  if (now - lastTouch <= 500) {
+    event.preventDefault();
+  }
+  lastTouch = now;
+}, true);
