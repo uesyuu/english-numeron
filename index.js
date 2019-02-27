@@ -17,6 +17,8 @@ function main(data){
 var wordNum = 4;
 $('#start').click(function(){
   $('#process').text('');
+  $('#answer').css('display','none');
+  $('#description').css('display','none');
   var url;
   if($('#select').val() == '3freq'){
     url = './dict-3letters-frequent.txt';
@@ -79,6 +81,11 @@ $('#submit').click(function(){
   }else{
     alert(wordNum + '文字のアルファベットを入力してください');
   }
+});
+
+$('#open').click(function(){
+  $('#answer').css('display','inline');
+  $('#description').css('display','inline');
 });
 
 document.addEventListener('touchstart', event => {
