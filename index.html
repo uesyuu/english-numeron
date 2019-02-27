@@ -14,9 +14,18 @@
   <div class="container">
     <header class="sticky-top">
         <h3>英単語ヌメロン</h3>
-        <p>4文字の英単語を当ててください</p>
+        <select id="select">
+          <option value="3freq">3文字の頻出英単語(160単語)</option>
+          <option value="3">3文字の英単語(566単語)</option>
+          <option value="4freq">4文字の頻出英単語(406単語)</option>
+          <option value="4" selected>4文字の英単語(1629単語)</option>
+          <option value="5freq">5文字の頻出英単語(338単語)</option>
+          <option value="5">5文字の英単語(2032単語)</option>
+        </select>
+        <input type="button" id="start" value="start">
+        <p><span id="wordNum">4</span>文字の英単語を当ててください</p>
         <input type="text" name="" id="text">
-        <input type="button" id="button" value="submit">
+        <input type="button" id="submit" value="submit">
         <span id="answer" style="display:none;"></span>
         <span id="description" style="display:none;"></span>
     </header>

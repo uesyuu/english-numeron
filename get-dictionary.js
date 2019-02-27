@@ -8,7 +8,7 @@ const reader = readline.createInterface({input:stream});
 reader.on('line',(data) => {
   let data2 = data.split('\t');
   let sameLetter = false;
-  if(data2[0].match(/^[a-z]{4}$/)){
+  if(data2[0].match(/^[a-z]{3}$/)){
     let letters = data2[0].split('');
     for(let i=0;i<letters.length;i++){
       for(let j=0;j<letters.length;j++){

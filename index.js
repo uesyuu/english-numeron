@@ -14,9 +14,47 @@ function main(data){
   $('#description').text(word[1]);
 }
 
-$('#button').click(function(){
+var wordNum = 4;
+$('#start').click(function(){
+  $('#process').text('');
+  var url;
+  if($('#select').val() == '3freq'){
+    url = './dict-3letters-frequent.txt';
+    wordNum = 3;
+  }else if($('#select').val() == '3'){
+    url = './dict-3letters.txt';
+    wordNum = 3;
+  }else if($('#select').val() == '4freq'){
+    url = './dict-4letters-frequent.txt';
+    wordNum = 4;
+  }else if($('#select').val() == '4'){
+    url = './dict-4letters.txt';
+    wordNum = 4;
+  }else if($('#select').val() == '5freq'){
+    url = './dict-5letters-frequent.txt';
+    wordNum = 5;
+  }else if($('#select').val() == '5'){
+    url = './dict-5letters.txt';
+    wordNum = 5;
+  }
+  $('#wordNum').text(wordNum);
+  $.ajax({
+    url: url,
+    success: main
+  });
+});
+
+$('#submit').click(function(){
   var myWord = $('#text').val();
-  if(myWord.match(/^[a-z]{4}$/)){
+  var match;
+  if(wordNum == 3){
+    match = myWord.match(/^[a-z]{3}$/);
+  }else if(wordNum == 4){
+    match = myWord.match(/^[a-z]{4}$/);
+  }else if(wordNum == 5){
+    match = myWord.match(/^[a-z]{5}$/);
+  }
+  if(match){
     var eat = 0;
     var bite = 0;
     var letters = $('#answer').text().split('');
@@ -35,12 +73,11 @@ $('#button').click(function(){
       }
     }
     $('#process').prepend('<tr><td>' + myWord + '</td><td>' + eat + 'eat ' + bite + 'bite</td></tr>');
-    if(eat == 4){
+    if(eat == wordNum){
       alert('正解です！\n' + $('#answer').text() + ' : ' + $('#description').text());
-      location.reload();
     }
   }else{
-    alert('4文字のアルファベットを入力してください');
+    alert(wordNum + '文字のアルファベットを入力してください');
   }
 });
 
